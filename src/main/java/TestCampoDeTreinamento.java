@@ -1,22 +1,19 @@
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TestGoogle {
+public class TestCampoDeTreinamento {
 	
 	@Test
-	public void testGoogle() {
+	public void TestCampoDeTreinamento() {
 		
 		System.setProperty("webdriver.gecko.driver","C:/geckodriver-v0.31.0-win64/geckodriver.exe"); 
 		WebDriver driver = new FirefoxDriver();
-		driver.get("https://www.google.com");
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/test/resources/componentes.html");
 		
-		Assert.assertEquals("Google",driver.getTitle());
-		driver.quit();
+		
 		
 	}
+	
 
 }
