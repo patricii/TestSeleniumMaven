@@ -10,15 +10,19 @@ import org.openqa.selenium.support.ui.Select;
 public class TestCampoDeTreinamento {
 
 	private WebDriver driver;
-	private DSL dslLocal;
+	private DSL dsl;
+	private CampoDeTreinamentoPage page;
 
 	@Before
 	public void inicializa() {
 
 		System.setProperty("webdriver.gecko.driver", "C:/geckodriver-v0.31.0-win64/geckodriver.exe");
 		driver = new FirefoxDriver();
-		dslLocal = new DSL(driver);
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/test/resources/componentes.html");
+		
+		dsl = new DSL(driver);
+		page = new CampoDeTreinamentoPage(driver);
+
 	}
 
 	@After
@@ -29,28 +33,22 @@ public class TestCampoDeTreinamento {
 	@Test
 	public void CadastroSuccess() {
 
-		dslLocal.sendKeysDSL("elementosForm:nome", "Adriano");
-		dslLocal.sendKeysDSL("elementosForm:sobrenome", "Patricio");
-
-
-		driver.findElement(By.id("elementosForm:sexo:0")).click();
-		driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
+		page.setNome("Adriano");
+		page.setSobrenome("Patricio");
+		page.setMasculino();
+		page.setComidaPizza();		
+		page.SetSchoolLevel("Superior");		
+		page.SetSport("Corrida");
+		page.ClickPage();
+	
 		
-		new Select(driver.findElement(By.id("elementosForm:escolaridade"))).selectByVisibleText("Superior");
-		new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("Corrida");
-		
-		driver.findElement(By.id("elementosForm:cadastrar")).click();
-		
-		
-		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
-		
-		
-		Assert.assertEquals("Nome: Adriano", dslLocal.getTextDSL("descNome"));
-		Assert.assertEquals("Sobrenome: Patricio", dslLocal.getTextDSL("descSobrenome"));
-		Assert.assertEquals("Sexo: Masculino", dslLocal.getTextDSL("descSexo"));
-		Assert.assertEquals("Comida: Pizza",dslLocal.getTextDSL("descComida"));
-		Assert.assertEquals("Escolaridade: superior", dslLocal.getTextDSL("descEscolaridade"));
-		Assert.assertEquals("Esportes: Corrida", dslLocal.getTextDSL("descEsportes"));
+		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));			
+		Assert.assertEquals("Nome: Adriano", page.getName());
+		Assert.assertEquals("Sobrenome: Patricio", page.getLastName());
+		Assert.assertEquals("Sexo: Masculino", page.getGender());
+		Assert.assertEquals("Comida: Pizza",page.getFood());
+		Assert.assertEquals("Escolaridade: superior", page.getSchool());
+		Assert.assertEquals("Esportes: Corrida", page.getSport());
 
 	}
 }
