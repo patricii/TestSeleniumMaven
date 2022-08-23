@@ -5,12 +5,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class TestCampoDeTreinamento {
 
 	private WebDriver driver;
-	private DSL dsl;
 	private CampoDeTreinamentoPage page;
 
 	@Before
@@ -19,15 +17,13 @@ public class TestCampoDeTreinamento {
 		System.setProperty("webdriver.gecko.driver", "C:/geckodriver-v0.31.0-win64/geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/test/resources/componentes.html");
-		
-		dsl = new DSL(driver);
 		page = new CampoDeTreinamentoPage(driver);
 
 	}
 
 	@After
 	public void ExitTest() {
-		//driver.quit();
+		// driver.quit();
 	}
 
 	@Test
@@ -36,17 +32,16 @@ public class TestCampoDeTreinamento {
 		page.setNome("Adriano");
 		page.setSobrenome("Patricio");
 		page.setMasculino();
-		page.setComidaPizza();		
-		page.SetSchoolLevel("Superior");		
+		page.setComidaPizza();
+		page.SetSchoolLevel("Superior");
 		page.SetSport("Corrida");
 		page.ClickPage();
-	
-		
-		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));			
+
+		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
 		Assert.assertEquals("Nome: Adriano", page.getName());
 		Assert.assertEquals("Sobrenome: Patricio", page.getLastName());
 		Assert.assertEquals("Sexo: Masculino", page.getGender());
-		Assert.assertEquals("Comida: Pizza",page.getFood());
+		Assert.assertEquals("Comida: Pizza", page.getFood());
 		Assert.assertEquals("Escolaridade: superior", page.getSchool());
 		Assert.assertEquals("Esportes: Corrida", page.getSport());
 

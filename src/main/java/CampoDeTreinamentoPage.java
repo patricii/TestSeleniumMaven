@@ -49,22 +49,25 @@ public class CampoDeTreinamentoPage {
 
 		return dsl.getTextDSL("descSobrenome");
 	}
+
 	public String getGender() {
 
 		return dsl.getTextDSL("descSexo");
 	}
+
 	public String getFood() {
 
 		return dsl.getTextDSL("descComida");
 	}
+
 	public String getSchool() {
 
 		return dsl.getTextDSL("descEscolaridade");
 	}
+
 	public String getSport() {
 
 		return dsl.getTextDSL("descEsportes");
 	}
-	
 
 }

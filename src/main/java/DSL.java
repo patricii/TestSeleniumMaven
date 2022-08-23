@@ -16,7 +16,7 @@ public class DSL {
 	}
 
 	public void ClickDsl(String text_id) {
-		
+
 		driver.findElement(By.id(text_id)).click();
 	}
 
