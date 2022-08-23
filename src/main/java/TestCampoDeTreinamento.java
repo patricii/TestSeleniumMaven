@@ -29,8 +29,8 @@ public class TestCampoDeTreinamento {
 	@Test
 	public void CadastroSuccess() {
 
-		dslLocal.sendKeys("elementosForm:nome", "Adriano");
-		dslLocal.sendKeys("elementosForm:sobrenome", "Patricio");
+		dslLocal.sendKeysDSL("elementosForm:nome", "Adriano");
+		dslLocal.sendKeysDSL("elementosForm:sobrenome", "Patricio");
 
 
 		driver.findElement(By.id("elementosForm:sexo:0")).click();
@@ -42,13 +42,15 @@ public class TestCampoDeTreinamento {
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		
 		
-		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));			
-		Assert.assertEquals("Nome: Adriano", driver.findElement(By.id("descNome")).getText());
-		Assert.assertEquals("Sobrenome: Patricio", driver.findElement(By.id("descSobrenome")).getText());
-		Assert.assertEquals("Sexo: Masculino", driver.findElement(By.id("descSexo")).getText());
-		Assert.assertEquals("Comida: Pizza", driver.findElement(By.id("descComida")).getText());
-		Assert.assertEquals("Escolaridade: superior", driver.findElement(By.id("descEscolaridade")).getText());
-		Assert.assertEquals("Esportes: Corrida", driver.findElement(By.id("descEsportes")).getText());
+		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
+		
+		
+		Assert.assertEquals("Nome: Adriano", dslLocal.getTextDSL("descNome"));
+		Assert.assertEquals("Sobrenome: Patricio", dslLocal.getTextDSL("descSobrenome"));
+		Assert.assertEquals("Sexo: Masculino", dslLocal.getTextDSL("descSexo"));
+		Assert.assertEquals("Comida: Pizza",dslLocal.getTextDSL("descComida"));
+		Assert.assertEquals("Escolaridade: superior", dslLocal.getTextDSL("descEscolaridade"));
+		Assert.assertEquals("Esportes: Corrida", dslLocal.getTextDSL("descEsportes"));
 
 	}
 }

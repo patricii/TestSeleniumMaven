@@ -8,9 +8,13 @@ public class DSL {
 	public DSL(WebDriver driver) {
 		this.driver = driver;
 	}
-	public void sendKeys(String id_name, String text) {
+	public void sendKeysDSL(String id_name, String text) {
 		
 		driver.findElement(By.id(id_name)).sendKeys(text);
+	}
+	public String getTextDSL(String text) {
+		
+		return driver.findElement(By.id(text)).getText();
 	}
 	
 
