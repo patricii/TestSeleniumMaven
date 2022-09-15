@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,6 +20,7 @@ public class TestCampoDeTreinamento {
 		driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/test/resources/componentes.html");
 		page = new CampoDeTreinamentoPage(driver);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 	}
 

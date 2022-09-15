@@ -1,4 +1,6 @@
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +15,7 @@ public class TestGoogle {
 		
 		WebDriver driver = new FirefoxDriver();
 		driver.get("https://www.google.com");
-		
+
 		Assert.assertEquals("Google",driver.getTitle());
 		//driver.quit();
 		
